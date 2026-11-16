@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ayoub Kochbati, Cloud and Systems Engineer in Luxembourg and Microsoft Certified Trainer. Azure infrastructure, cloud security, automation, and data systems research.">
+  <meta name="theme-color" content="#102337">
+  <title>Ayoub Kochbati — Cloud &amp; Systems Engineer</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f7f6f1;
+      --white: #fffefa;
+      --ink: #142638;
+      --muted: #475a67;
+      --accent: #0b604e;
+      --line: #d6dedb;
+      --navy: #102337;
+      --mint: #a6e5cf;
+      --mono: ui-monospace, "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 1rem/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--accent); text-underline-offset: .2em; }
+    a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+    h1, h2, h3, p { margin: 0; }
+    .wrap { width: min(1080px, calc(100% - 2.75rem)); margin-inline: auto; }
+    .skip { position: absolute; top: .75rem; left: 1rem; padding: .65rem 1rem; background: white; z-index: 2; }
+    .skip:not(:focus) { clip-path: inset(50%); }
+    .site-header { border-bottom: 1px solid var(--line); }
+    .site-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: .4rem 1.5rem; padding-block: .8rem;
+    }
+    .brand {
+      color: var(--ink); font: 700 .85rem/1.3 var(--mono);
+      text-decoration: none; letter-spacing: .055em;
+    }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; flex-wrap: wrap; gap: .25rem clamp(.7rem, 3vw, 1.65rem); }
+    .nav-links a { color: var(--ink); font-size: .875rem; font-weight: 600; text-decoration: none; }
+    .nav-links a:hover { text-decoration: underline; }
+
+    .hero { background: var(--navy); color: var(--white); }
+    .hero-inner {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(235px, .48fr);
+      align-items: center; gap: clamp(2rem, 6vw, 5rem);
+      padding-block: clamp(3.5rem, 8vw, 6.5rem);
+    }
+    .eyebrow {
+      font: 700 .75rem/1.5 var(--mono); letter-spacing: .11em;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .hero .eyebrow { color: var(--mint); }
+    h1 { margin: .7rem 0 .65rem; font-size: clamp(2.8rem, 7.1vw, 5.65rem); line-height: 1.01; letter-spacing: -.065em; }
+    .role { color: var(--mint); font-weight: 650; font-size: clamp(1.1rem, 2.4vw, 1.5rem); line-height: 1.35; }
+    .intro { max-width: 54ch; margin-top: 1.1rem; color: #d7e2e9; }
+    .buttons { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.55rem; }
+    .button {
+      display: inline-block; padding: .58rem .88rem; border: 1px solid var(--mint);
+      border-radius: .35rem; font-size: .9rem; font-weight: 700; text-decoration: none;
+    }
+    .button-primary { background: var(--mint); color: var(--navy); }
+    .button-secondary { color: var(--mint); }
+    .button:hover { text-decoration: underline; }
+    .profile {
+      margin: 0; padding: 1.2rem 1.35rem; border: 1px solid #50717c;
+      border-radius: .5rem; background: #183044;
+    }
+    .profile div { padding: .72rem 0; }
+    .profile div + div { border-top: 1px solid #50717c; }
+    .profile dt { color: var(--mint); font: 600 .72rem/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .profile dd { margin: .24rem 0 0; color: var(--white); line-height: 1.4; }
+
+    .section {
+      display: grid; grid-template-columns: minmax(160px, .34fr) minmax(0, 1fr);
+      gap: 1.25rem clamp(2rem, 6vw, 5rem);
+      padding-block: clamp(2.1rem, 5vw, 3.8rem);
+      border-bottom: 1px solid var(--line);
+    }
+    .section h2 { margin-top: .35rem; font-size: clamp(1.65rem, 3.4vw, 2.35rem); letter-spacing: -.045em; line-height: 1.12; }
+    .section h3 { font-size: 1.125rem; line-height: 1.35; }
+    .section p:not(.eyebrow) { color: var(--muted); }
+    .meta { margin: .3rem 0 .65rem; font-size: .88rem; }
+    .highlights { margin: .7rem 0 0; padding-inline-start: 1.18rem; }
+    .highlights li + li { margin-top: .43rem; }
+    .highlights li::marker { color: var(--accent); }
+    .entry + .entry { margin-top: 1.35rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+    .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; }
+    .card { padding: 1.1rem; border: 1px solid var(--line); border-radius: .5rem; background: var(--white); }
+    .card h3 { margin-bottom: .4rem; font-size: 1rem; }
+    .card p { font-size: .93rem; }
+    .exams { display: flex; flex-wrap: wrap; gap: .55rem; padding: 0; margin: .9rem 0 0; list-style: none; }
+    .exams li {
+      color: var(--accent); background: #e5f2eb; padding: .27rem .55rem;
+      border-radius: .25rem; font: 700 .8rem/1.5 var(--mono);
+    }
+    footer { padding-block: 1.5rem; font-size: .88rem; color: var(--muted); }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .35rem 1rem; }
+
+    @media (max-width: 720px) {
+      .hero-inner, .section { grid-template-columns: 1fr; }
+      .profile { max-width: 34rem; }
+    }
+    @media (max-width: 430px) {
+      .wrap { width: calc(100% - 2rem); }
+      .cards { grid-template-columns: 1fr; }
+    }
+    @media print {
+      @page { margin: 14mm; }
+      body { background: white; font-size: 10pt; }
+      .wrap { width: 100%; }
+      .site-header, .skip, .buttons, .profile, footer { display: none; }
+      .hero { background: white; color: var(--ink); }
+      .hero-inner { display: block; padding-block: 0 1rem; }
+      .hero .eyebrow, .role, .intro { color: var(--ink); }
+      h1 { font-size: 32pt; }
+      .section { display: block; padding-block: .7rem; break-inside: avoid; }
+      .section h2 { font-size: 16pt; margin-bottom: .45rem; }
+      .section .eyebrow { display: none; }
+      .card { padding: .55rem; }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="site-nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top"><span>AK</span> / PORTFOLIO</a>
+      <div class="nav-links">
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#training">Training</a>
+        <a href="#research">Research</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="wrap hero-inner">
+        <div>
+          <p class="eyebrow">Cloud infrastructure &amp; security / Luxembourg</p>
+          <h1 id="page-title">Ayoub Kochbati</h1>
+          <p class="role">Cloud &amp; Systems Engineer · Microsoft Certified Trainer</p>
+          <p class="intro">I keep Azure and hybrid infrastructure running reliably and make it easier to operate. My work spans identity, cloud security, and automation. As a trainer, I focus on showing how those systems work in practice.</p>
+          <div class="buttons">
+            <a class="button button-primary" href="#experience">View experience</a>
+            <a class="button button-secondary" href="https://github.com/ayoubkochbati">GitHub ↗</a>
+            <!-- Add a LinkedIn button here using your public profile URL. -->
+          </div>
+        </div>
+        <dl class="profile">
+          <div><dt>Based in</dt><dd>Luxembourg</dd></div>
+          <div><dt>Technical focus</dt><dd>Azure, identity &amp; automation</dd></div>
+          <div><dt>Languages</dt><dd>Arabic, French &amp; English</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <section class="section" id="experience" aria-labelledby="experience-title">
+        <div><p class="eyebrow">01 / Career</p><h2 id="experience-title">Experience</h2></div>
+        <div>
+          <article class="entry">
+            <h3>Cloud &amp; Systems Engineer</h3>
+            <p class="meta">Current role · Luxembourg</p>
+            <!-- If desired, add your employer and exact dates here. -->
+            <ul class="highlights">
+              <li>Operate Azure and hybrid infrastructure, including networking, application delivery, and Windows and Linux systems.</li>
+              <li>Administer Microsoft Entra ID, Microsoft 365, and hybrid Exchange, with a focus on secure access and reliable service.</li>
+              <li>Use Terraform, Ansible, and Azure DevOps to make deployments and system maintenance repeatable.</li>
+              <li>Support VMware, Kubernetes, and Linux fleet patching with Foreman and Katello.</li>
+            </ul>
+          </article>
+          <article class="entry">
+            <h3>Hitehpros</h3>
+            <p class="meta">Earlier career · Paris, France · 2019–2020</p>
+            <!-- Add your exact role and one concrete achievement from this period. -->
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="skills" aria-labelledby="skills-title">
+        <div><p class="eyebrow">02 / Technical scope</p><h2 id="skills-title">Core skills</h2></div>
+        <div class="cards">
+          <article class="card"><h3>Azure infrastructure</h3><p>Virtual networking, Application Gateway, Container Apps, and hybrid management with Azure Arc.</p></article>
+          <article class="card"><h3>Identity &amp; security</h3><p>Microsoft Entra ID, Active Directory, Conditional Access, and Microsoft 365 administration.</p></article>
+          <article class="card"><h3>Automation &amp; delivery</h3><p>Terraform, Ansible, Azure DevOps pipelines, and infrastructure as code.</p></article>
+          <article class="card"><h3>Platform operations</h3><p>Windows and Linux, VMware vSphere, Docker, Kubernetes, and Foreman/Katello.</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="training" aria-labelledby="training-title">
+        <div><p class="eyebrow">03 / Knowledge sharing</p><h2 id="training-title">Training &amp; credentials</h2></div>
+        <div>
+          <article class="entry">
+            <h3>Microsoft Certified Trainer (MCT)</h3>
+            <p class="meta">Azure infrastructure &amp; security</p>
+            <p>I teach the concepts behind Azure infrastructure and security through practical examples and hands-on labs.</p>
+          </article>
+          <article class="entry">
+            <h3>Microsoft exams</h3>
+            <ul class="exams">
+              <li>AZ-900</li>
+              <li>AZ-104</li>
+              <li>AZ-305</li>
+              <li>AZ-500</li>
+            </ul>
+            <!-- Add a Microsoft Learn transcript link if you want to share it publicly. -->
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="research" aria-labelledby="research-title">
+        <div><p class="eyebrow">04 / Data systems</p><h2 id="research-title">Research</h2></div>
+        <div>
+          <article class="entry">
+            <h3>ODAR-SF</h3>
+            <p class="meta">Research in progress · Apache Iceberg &amp; Spark</p>
+            <p>I’m exploring when an Iceberg table should compact small files as query patterns change. The goal is to rewrite only the partitions where the expected query benefit justifies the maintenance cost.</p>
+          </article>
+          <article class="entry">
+            <h3>Explainable Ensemble Learning for Distracted Driver Detection using CNN-YOLO Fusion</h3>
+            <p class="meta">Accepted at KES 2026 · With Khaoula Elbedoui</p>
+            <!-- Add the DOI or public paper link when available. -->
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Ayoub Kochbati · Luxembourg</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
